@@ -30,7 +30,7 @@ This repository includes the following documents and diagrams:
 - **BRD (Business Requirements Document)**
 - **FRD (Functional Requirements Document)**
 - **Use Case Document**
-- **Process Flow Diagrams (AS-IS & TO-BE)**
+- **Process Flow Diagrams**
 - **Business Rules & Decision Logic**
   ---
 
