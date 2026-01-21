@@ -1,0 +1,185 @@
+BUSINESS REQUIREMENTS DOCUMENT (BRD)
+Project: Automated Loan Origination System (LOS)
+Version: 1.0
+Prepared by: Business Analyst
+Domain: Banking & Lending
+________________________________________
+1. Document Control
+Item	Details
+Document Title	Business Requirements Document – Automated Loan Origination System
+Version	1.0
+Prepared By	Indana Anupama
+Reviewed By	Product Manager / Credit Manager
+Approved By	Head of Digital Lending
+Date	14/11/2025
+	
+________________________________________
+2. Purpose of the Document
+The purpose of this BRD is to define the business requirements, process flows, functional expectations, and scope for implementing a fully Automated Loan Origination System (LOS) for retail loans.
+The system aims to reduce manual work, improve TAT, automate KYC & CIBIL checks, and streamline approvals through a digital workflow.
+________________________________________
+3. Project Overview
+3.1 Background
+The bank’s current loan origination process is manual, paper-based, and dependent on branch staff. This causes delays, errors, and inconsistent decision-making.
+A digital LOS is required to automate customer onboarding, verification, credit assessment, and loan disbursement.
+3.2 Business Need
+•	To reduce overall loan approval time
+•	To meet increasing digital demand from customers
+•	To ensure regulatory (RBI) compliant KYC verification
+•	To reduce operational workload and cost
+•	To improve underwriting accuracy and risk evaluation
+________________________________________
+4. Scope of Work
+In Scope
+•	Online loan application portal
+•	KYC automation (Aadhaar + PAN validation API)
+•	Bureau/CIBIL pull
+•	Automated credit scoring engine
+•	Underwriter review workflow
+•	Approval engine
+•	Disbursement initiation to Core Banking System (CBS)
+•	Notifications (SMS, Email, App)
+•	Loan status tracking dashboard
+Out of Scope
+•	Collections & recovery
+•	NPA management
+•	Core Banking upgrades
+•	Loan closure module
+________________________________________
+5. Business Requirements Summary
+BR-01: Customer Loan Application Portal
+The system shall allow customers to submit online loan applications through web/mobile.
+BR-02: KYC Automation
+The system must validate Aadhaar and PAN using third-party APIs.
+BR-03: Bureau Check Integration
+The system must automatically fetch CIBIL reports and store score with application.
+BR-04: Automated Credit Scoring
+The system must generate a risk score using predefined rules and data inputs.
+BR-05: Underwriter Workflow
+Medium-risk loan applications must be assigned to underwriters for manual review.
+BR-06: Auto Approval Rules
+Low-risk applications should be auto-approved based on business rules.
+BR-07: Digital Document Upload
+Customers must upload income proof, ID proof, address proof, and bank statements.
+BR-08: Disbursement Trigger
+System must integrate with CBS to initiate disbursement.
+BR-09: Notification Management
+System must send real-time updates (SMS/Email/app push).
+BR-10: Dashboard & Reporting
+System must provide dashboards for TAT, approval rates, and application pipeline.
+________________________________________
+6. Detailed Business Requirements
+6.1 Customer Portal Requirements
+Requirement ID	Requirement Description	Priority
+BR-1.1	Portal must support login via mobile OTP	High
+BR-1.2	Customer must be able to fill loan details, personal details, and employment details	High
+BR-1.3	Portal must validate mandatory fields before submission	High
+BR-1.4	Customer must be able to upload documents (PDF/JPEG)	High
+BR-1.5	Portal must show loan status tracker	Medium
+________________________________________
+6.2 KYC Requirements
+Requirement ID	Requirement Description	Priority
+BR-2.1	Aadhaar Offline KYC validation must be automated	High
+BR-2.2	PAN number should be validated using PAN API	High
+BR-2.3	System must flag mismatches in customer data	High
+________________________________________
+6.3 Bureau (CIBIL) Requirements
+Requirement ID	Requirement Description	Priority
+BR-3.1	System must trigger CIBIL report API during application stage	High
+BR-3.2	Bureau report fields must auto-map to internal fields	High
+BR-3.3	If CIBIL <600 → auto reject	High
+BR-3.4	If CIBIL 600–750 → send to underwriter	High
+BR-3.5	If CIBIL >750 → auto approve	High
+________________________________________
+6.4 Credit Scoring Engine Requirements
+Requirement ID	Requirement Description	Priority
+BR-4.1	System must calculate risk score based on rules	High
+BR-4.2	Rules include: FOIR, income, obligations, bureau score, employer category	High
+BR-4.3	System must recommend "Eligible/Review/Reject" based on score	High
+________________________________________
+6.5 Underwriter Module Requirements
+Requirement ID	Requirement Description	Priority
+BR-5.1	Medium-risk cases must move to underwriter queue automatically	High
+BR-5.2	Underwriters must view application summary	Medium
+BR-5.3	Underwriters must add comments	Medium
+BR-5.4	Underwriters must Approve/Reject/Request More Info	High
+________________________________________
+6.6 Approval Engine Requirements
+Requirement ID	Requirement Description	Priority
+BR-6.1	Low-risk cases must be auto approved	High
+BR-6.2	System must apply business rule checks before approval	High
+BR-6.3	Approval must notify customer instantly	Medium
+________________________________________
+6.7 Disbursement Module Requirements
+Requirement ID	Requirement Description	Priority
+BR-7.1	System must send disbursement request to CBS via API	High
+BR-7.2	Loan Account Number must be generated by CBS	High
+BR-7.3	Disbursement confirmation must be updated in LOS	High
+________________________________________
+6.8 Notification Requirements
+Requirement ID	Requirement Description	Priority
+BR-8.1	System must send SMS/email for each stage change	High
+BR-8.2	Templates must be configurable	Medium
+BR-8.3	System must retry failed notifications	Medium
+________________________________________
+6.9 Reporting Requirements
+Requirement ID	Requirement Description	Priority
+BR-9.1	Dashboard must display loan pipeline (New/Processing/Approved)	High
+BR-9.2	TAT metrics must be available at product and region level	High
+BR-9.3	Export reports in Excel/PDF	Medium
+________________________________________
+7. AS-IS Process Summary
+1.	Customer visits branch and fills paper form
+2.	Branch staff enters details manually
+3.	Manual verification and document checking
+4.	Physical CIBIL request
+5.	Manual underwriting
+6.	Approval/Reject decision
+7.	Manual disbursement
+Challenges:
+•	High TAT
+•	Manual errors
+•	Limited tracking
+•	Compliance risks
+________________________________________
+8. TO-BE Automated Process Summary
+1.	Customer submits loan application online
+2.	Automated KYC validation
+3.	Automated CIBIL pull
+4.	Credit scoring engine assigns risk category
+5.	Low-risk → Auto approval
+6.	Medium-risk → Underwriter
+7.	System triggers disbursement
+8.	Customer gets instant updates
+________________________________________
+9. Assumptions
+•	APIs for Aadhaar/PAN/CIBIL will be available
+•	Core Banking System supports disbursement API
+•	Customer has basic smartphone access
+•	Document upload size allowed up to 5 MB
+________________________________________
+10. Constraints
+•	RBI KYC compliance rules
+•	Downtime of third-party APIs
+•	Integration dependency on CBS vendor
+________________________________________
+11. Risks & Mitigation
+Risk	Impact	Mitigation
+API failure	Customer dropouts	Retry logic + fallback manual flow
+Wrong eligibility decisions	Financial loss	Periodic rule validation
+Customer abandonment	Low conversion	Auto-save + reminders
+Upload failures	Delay in processing	Compress & validate file formats
+________________________________________
+12. Success Metrics (KPIs)
+•	TAT: 3–7 days → <24 hours
+•	Manual underwriting reduced by 60%
+•	Application approval rate increased by 20%
+•	Customer satisfaction score improved
+•	Drop-off rate reduced by 30%
+________________________________________
+13. Appendix
+•	Sample wireframes
+•	Sample API specifications
+•	Sample risk scoring rules
+•	Glossary (FOIR, DPD, CIBIL, OCR, etc.)
+
